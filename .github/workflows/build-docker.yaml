@@ -12,9 +12,7 @@ jobs:
       ## 构建镜像并推送
       - name: Publish to Registry
         # uses: elgohr/Publish-Docker-Github-Action@master
-        env:
-          MY_TAGS: ${{ echo github.ref | sed -e "s/refs\/tags\/v//g" }}
-        run: echo ${{ env.MY_TAGS }}
+        run: echo MY_TAGS=${{ github.ref  }} | sed -e "s/refs\/tags\/v//g"  >> $GITHUB_ENV
         # with:
         #   name: catlair/bilitaskpuppeteer
         #   username: ${{ secrets.DOCKER_USERNAME }}
@@ -22,3 +20,8 @@ jobs:
         #   snapshot: true
         #   #          tag_names: true # 不支持和latest同时用?
         #   tags: 'latest,${{ env.MY_TAGS }}'
+      - name: 测试结果
+        run: echo ${{ env.MY_TAGS }}
+
+      - name: 测试结果2
+        run: echo $MY_TAGS
