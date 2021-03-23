@@ -9,17 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     environment: Build
     steps:
+      - name: 环境
+        run: echo ${{ secrets.TEST_BILI }} >> demo1.json
+      - name: Test
+        run: cat demo1.json
       ## 构建镜像并推送
       - name: Publish to Registry
         # uses: elgohr/Publish-Docker-Github-Action@master
         run: echo MY_TAGS=${{ github.ref  }} | sed -e "s/refs\/tags\/v//g"  >> $GITHUB_ENV
-        # with:
-        #   name: catlair/bilitaskpuppeteer
-        #   username: ${{ secrets.DOCKER_USERNAME }}
-        #   password: ${{ secrets.DOCKER_PASSWORD }}
-        #   snapshot: true
-        #   #          tag_names: true # 不支持和latest同时用?
-        #   tags: 'latest,${{ env.MY_TAGS }}'
+        
       - name: 测试结果
         run: echo ${{ env.MY_TAGS }}
 
