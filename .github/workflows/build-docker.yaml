@@ -9,11 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     environment: Build
     steps:
-
       ## 构建镜像并推送
       - name: Publish to Registry
-        uses: elgohr/Publish-Docker-Github-Action@master
+        # uses: elgohr/Publish-Docker-Github-Action@master
         env:
           MY_TAGS: echo ${{  github.ref  }} | sed -e "s/refs\/tags\/v//g"
         run: echo ${{ env.MY_TAGS }}
-
+        # with:
+        #   name: catlair/bilitaskpuppeteer
+        #   username: ${{ secrets.DOCKER_USERNAME }}
+        #   password: ${{ secrets.DOCKER_PASSWORD }}
+        #   snapshot: true
+        #   #          tag_names: true # 不支持和latest同时用?
+        #   tags: 'latest,${{ env.MY_TAGS }}'
