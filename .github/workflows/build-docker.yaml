@@ -13,7 +13,7 @@ jobs:
       - name: Publish to Registry
         # uses: elgohr/Publish-Docker-Github-Action@master
         env:
-          MY_TAGS: echo ${{  github.ref  }} | sed -e "s/refs\/tags\/v//g"
+          MY_TAGS: ${{ echo github.ref | sed -e "s/refs\/tags\/v//g" }}
         run: echo ${{ env.MY_TAGS }}
         # with:
         #   name: catlair/bilitaskpuppeteer
