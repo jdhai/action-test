@@ -15,7 +15,7 @@ jobs:
         run: cat demo1.json
       ## 构建镜像并推送
       - name: Publish to Registry
-        # uses: elgohr/Publish-Docker-Github-Action@master
+        # uses: elgohr/Publish-Docker-Github-Action@v5
         run: echo MY_TAGS=${{ github.ref  }} | sed -e "s/refs\/tags\/v//g"  >> $GITHUB_ENV
         
       - name: 测试结果
